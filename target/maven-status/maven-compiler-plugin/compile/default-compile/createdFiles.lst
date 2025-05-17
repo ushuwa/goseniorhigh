@@ -1,0 +1,4 @@
+com\example\strandrecommender\StrandRecommenderApplication.class
+com\example\strandrecommender\controller\PageController.class
+com\example\strandrecommender\controller\QuestionnaireController$Question.class
+com\example\strandrecommender\controller\QuestionnaireController.class
