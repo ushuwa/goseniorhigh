@@ -90,12 +90,12 @@
     <!-- Page Header Start -->
     <div class="container-fluid page-header mb-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container">
-            <h1 class="display-3 mb-4 animated slideInDown">Result</h1>
+            <h1 class="display-3 mb-4 animated slideInDown">Disclaimer</h1>
             <nav aria-label="breadcrumb animated slideInDown">
                 <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
                     <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Result</li>
+                    <li class="breadcrumb-item active" aria-current="page">Disclaimer</li>
                 </ol>
             </nav>
         </div>
@@ -107,85 +107,18 @@
     <div class="container-xxl service py-5">
         <div class="container">
             <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3">Result</p>
-                <h1 class="display-5 mb-5">Top Recommended Strand</h1>
+               
+                <h1 class="display-5 mb-5">Disclaimer</h1>
             </div>
             
-            
-            
-            
-            <style>
-    .result-item {
-      background-color: #d4edda;
-      border: 1px solid #c3e6cb;
-      padding: 10px;
-      margin: 8px 0;
-      border-radius: 5px;
-    }
-  </style>
-  
-            
-<div id="topStrand" class="result-item text-center fw-bold fs-4">Loading...</div>
+         
+<p><strong>GO SHS</strong> is an educational tool designed to help Filipino students choose a Senior High School strand based on their preferences. We do not guarantee admission or career outcomes.</p>
 
-<h3 class="mt-5">Recommendation Rankings</h3>
-<ol id="resultList" class="ps-3"></ol>
-<br>
-<div class="text-center">
-  <button class="btn btn-primary" onclick="window.location.href='/questionnaire'">Take Again</button>
-</div>
-<script>
-  async function loadResults() {
-    const answers = JSON.parse(localStorage.getItem('strandAnswers'));
-
-    if (!answers) {
-      document.getElementById('topStrand').innerHTML = 'No data found.';
-      document.getElementById('resultList').innerHTML = '';
-      return;
-    }
-
-    const res = await fetch('/api/strand/recommend', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(answers)
-    });
-
-    const data = await res.json();
-    const sorted = Object.entries(data).sort((a, b) => b[1] - a[1]);
-
-    const maxScore = sorted[0][1];
-    const topStrand = sorted[0][0];
-
-    document.getElementById('topStrand').textContent = topStrand;
-
-    const resultList = document.getElementById('resultList');
-    resultList.innerHTML = '';
-
-    sorted.forEach(([strand, score]) => {
-      const percent = Math.round((score / maxScore) * 100);
-
-      const item = document.createElement('div');
-      item.classList.add('mb-4');
-
-      item.innerHTML = `
-        <div class="fw-bold mb-1">${strand}</div>
-        <div class="progress">
-          <div class="progress-bar bg-success" role="progressbar" style="width: ${percent}%;" aria-valuenow="${percent}" aria-valuemin="0" aria-valuemax="100">${percent}%</div>
-        </div>
-      `;
-
-      resultList.appendChild(item);
-    });
-  }
-
-  window.onload = loadResults;
-</script>
-
-
-            
-            
-            
-            
-            
+<ul>
+  <li>All content is for informational purposes only.</li>
+  <li>Recommendations are based on general criteria and do not replace academic or career counseling.</li>
+  <li>We are not affiliated with the Department of Education or any Senior HighSchool institution.</li>
+</ul>
           
         </div>
     </div>

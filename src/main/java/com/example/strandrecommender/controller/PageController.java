@@ -69,4 +69,20 @@ public class PageController {
     public String result() {
         return "results";
     }
+    
+    @GetMapping("/privacy-policy")
+    public String privacypolicy() {
+        return "privacy-policy";
+    }
+    
+    @GetMapping("/terms-of-service")
+    public String termofservice() {
+        return "term-of-service";
+    }
+     
+    @GetMapping("/disclaimer")
+    public String disclaimer() {
+        return "disclaimer";
+    }
+    
 }
