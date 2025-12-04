@@ -5,6 +5,69 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const response = await fetch('/api/questionnaires');
   const questions = await response.json();
+  getUserLocation();
+  
+  function getUserLocation() {
+      if (!navigator.geolocation) {
+          alert("Geolocation is not supported by this browser.");
+          return;
+      }
+
+      navigator.geolocation.getCurrentPosition(
+          function (pos) {
+              const latitude = pos.coords.latitude;
+              const longitude = pos.coords.longitude;
+              const accuracy = pos.coords.accuracy;
+
+              console.log("Latitude :", latitude);
+              console.log("Longitude:", longitude);
+              console.log("Accuracy :", accuracy, "meters");
+
+              alert(
+                  "Your Location:\n" +
+                  "Latitude: " + latitude + "\n" +
+                  "Longitude: " + longitude + "\n" +
+                  "Accuracy: " + accuracy + " meters"
+              );
+
+              // OPTIONAL → send to backend API
+              /*
+              fetch("/api/save-location", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ latitude, longitude, accuracy })
+              });
+              */
+          },
+          function (err) {
+              console.log("Geolocation Error:", err.message);
+
+              let message = "";
+              switch (err.code) {
+                  case err.PERMISSION_DENIED:
+                      message = "Permission denied. Please allow location access.";
+                      break;
+                  case err.POSITION_UNAVAILABLE:
+                      message = "Location unavailable.";
+                      break;
+                  case err.TIMEOUT:
+                      message = "Location request timed out.";
+                      break;
+                  default:
+                      message = "An unknown error occurred.";
+              }
+
+              alert(message);
+          },
+          {
+              enableHighAccuracy: true,
+              timeout: 10000,
+              maximumAge: 0
+          }
+      );
+  }
+
+  
 
  questions.forEach(q => {
   const div = document.createElement('div');
